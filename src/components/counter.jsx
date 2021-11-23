@@ -12,6 +12,7 @@ class Counter extends React.Component {
 
     formatCount()
     {
+      //destructuring count so code is not repetative
         const { count } = this.state.count; 
         if(count === 0)
         {
@@ -22,6 +23,7 @@ class Counter extends React.Component {
         }
     }
 
+    //encapsulated this method so it is easier and much more scalable
     getBadgeClasses()
     {
         let classes = "badge m-2 badge-"; 
@@ -36,18 +38,18 @@ class Counter extends React.Component {
         return classes; 
     }
 
-    handleIncrement = (product) => {
+    handleIncrement = product => {
+      console.log(product); 
         this.setState({ count: this.state.count + 1}); 
-    }
-    doHandleIncrement = () =>{
-      this.handleIncrement({ id: 1}); 
     }
 
   render() {
     return(
- <div>
+  <div>
    <span className = { this.getBadgeClasses() }> { this.formatCount() } </span>
-   <button onClick = { this.doHandleIncrement} className = "btn btn-secondary btn-sm"> 
+   <button
+    onClick = { () => this.handleIncrement(this.product) } 
+    className = "btn btn-secondary btn-sm"> 
    Increment
    </button>
  </div>
